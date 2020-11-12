@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Tree from './components/Tree/Tree';
 
 function App() {
+  const [url, setUrl] = useState('');
+  const [data, setData] = useState();
+
+  const fetchData = async () => {
+    const res = await fetch(url);
+    const resData = await res.json();
+    setData(resData);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='input'>
+        <input
+          style={{ width: '400px' }}
+          placeholder='insert your url'
+          onChange={(e) => setUrl(e.target.value)}
+          value={url}
+        />
+        <button onClick={fetchData}>fetch Data</button>
+      </div>
+      {data && <Tree data={data} />}
     </div>
   );
 }
