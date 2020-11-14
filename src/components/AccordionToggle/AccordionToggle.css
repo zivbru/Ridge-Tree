@@ -25,7 +25,12 @@ button.accordion:after {
   content: '\f055';
   font-family: 'fontawesome';
   font-size: 14px;
-  float: right;
+  float: left;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+button.accordion-remove:after {
+  content: '';
 }
 
 button.accordion.is-open:after {

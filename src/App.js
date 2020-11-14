@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import './App.css';
+import Spinner from './components/Spinner/Spinner';
 import Tree from './components/Tree/Tree';
 
 function App() {
   const [url, setUrl] = useState('');
   const [data, setData] = useState();
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
+    setData(null);
+    setLoading(true);
     const res = await fetch(url);
     const resData = await res.json();
     setData(resData);
+    setLoading(false);
   };
 
   return (
@@ -23,7 +28,7 @@ function App() {
         />
         <button onClick={fetchData}>fetch Data</button>
       </div>
-      {data && <Tree data={data} />}
+      {!data && loading ? <Spinner /> : <Tree data={data} />}
     </div>
   );
 }

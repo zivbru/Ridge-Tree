@@ -1,11 +1,12 @@
 import React from 'react';
 import './AccordionToggle.css';
 
-const AccordionToggle = ({ label, children }) => {
+const AccordionToggle = ({ label, children, primitive }) => {
   const onclick = (e) => {
     e.target.classList.toggle('is-open');
 
     var content = e.target.nextElementSibling;
+
     if (content.style.maxHeight) {
       // accordion is currently open, so close it
       content.style.maxHeight = null;
@@ -17,7 +18,10 @@ const AccordionToggle = ({ label, children }) => {
 
   return (
     <div className='container'>
-      <button className='accordion' onClick={onclick}>
+      <button
+        className={`accordion ${primitive ? 'accordion-remove' : ''}`}
+        onClick={onclick}
+      >
         {label}
       </button>
       <div className='accordion-content'>{children}</div>
