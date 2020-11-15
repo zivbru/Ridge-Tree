@@ -19,7 +19,9 @@ const AccordionToggle = ({ label, children, primitive }) => {
   return (
     <div className='container'>
       <button
-        className={`accordion ${primitive ? 'accordion-remove' : ''}`}
+        className={`accordion ${
+          primitive ? 'accordion-remove accordion-is-open-remove' : ''
+        }`}
         onClick={onclick}
       >
         {label}

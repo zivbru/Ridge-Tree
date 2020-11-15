@@ -35,8 +35,6 @@ const Tree = ({ data }) => {
             <div></div>
           )
         )
-      ) : typeof data === 'object' ? (
-        <Tree data={data} />
       ) : (
         <div>{data}</div>
       )}
